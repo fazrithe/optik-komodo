@@ -80,6 +80,7 @@ class Transaksi extends CI_Controller {
 					'status_l'		=> $this->input->post('status_l'),
 					'status_od'		=> $this->input->post('status_od'),
 					'status_os'		=> $this->input->post('status_os'),
+					'status_pd'		=> $this->input->post('status_pd'),
 					'jumlah'		=> $this->input->post('jumlah'),
 					'bpjs'		=> $this->input->post('bpjs'),
 					'uang_muka'		=> $this->input->post('uang_muka'),
