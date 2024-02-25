@@ -427,6 +427,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script
       src="<?php echo base_url().'assets/js/custom.js'?>"></script>
+      <script src="<?=base_url();?>assets/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- <script>
       document
         .getElementById("button-addon2")

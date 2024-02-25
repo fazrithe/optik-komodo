@@ -88,6 +88,25 @@ function selesai(){
 
       };
      // ajax adding data to database
+     Swal.fire({
+        title: "Telah selesai tersimpan",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      })
+      .then((result) => {
+        if(result.value) {
             $.ajax({
                 url : "transaksi/add",
                 type: "POST",
@@ -99,8 +118,9 @@ function selesai(){
                     if(data.status) //if success close modal and reload ajax table
                     {
                         $('#modal_form').modal('hide');
-                        reload_ajax();
-                        swalert(method);
+                        // reload_ajax();
+                        // swalert(method);
+                        window.location.href="http://localhost/optik-komodo-v2/admin/transaksi";
                     }
                     else
                     {
@@ -123,4 +143,6 @@ function selesai(){
                     $('#btnSave').attr('disabled',false); //set button enable 
                 }
             });
+        }
+    });
 }
