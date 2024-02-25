@@ -148,6 +148,7 @@
             <thead>
               <tr>
                 <th scope="col">No.</th>
+                <th scope="col">ID</th>
                 <th scope="col">Nama</th>
                 <th scope="col">No. BPJS</th>
                 <th scope="col">Alamat</th>
@@ -225,6 +226,7 @@
                         "orderable": false,
                         "searchable": false,
                     },
+                    {"data": "id","autowidth": true},	
                     {"data": "nama","autowidth": true},				
                     {"data": "no_bpjs","autowidth": true},
                     {"data": "alamat","autowidth": true},
@@ -236,7 +238,7 @@
                         "width": "13%"
                     }
                 ],
-                order: [[1, 'asc']],
+                order: [[1, 'desc']],
                 rowId: function(a){
                     return a;
                 },
@@ -265,6 +267,13 @@
             }
 
             // ajax adding data to database
+            Swal.fire({
+            title: "Data pendaftaran telah tersminpan.",
+                      showDenyButton: true,
+                      showCancelButton: true,
+                      confirmButtonText: "Lanjutkan Transaksi",
+                    }).then((result) => {
+                      if(result.value) {
             $.ajax({
                 url : url,
                 type: "POST",
@@ -275,8 +284,8 @@
                     // console.log(data);
                     if(data.status) //if success close modal and reload ajax table
                     {
-                        reload_ajax();
-                        swalert(method);
+                        // reload_ajax();
+                        window.location.href="http://localhost/optik-komodo-v2/admin/transaksi";
                     }
                     else
                     {
@@ -297,6 +306,8 @@
                     alert('Error adding / update data');
                 }
             });
+           }
+          });
         }
 
         
