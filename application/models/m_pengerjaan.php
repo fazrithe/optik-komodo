@@ -18,4 +18,23 @@ class m_pengerjaan extends CI_Model {
 		$hsl=$this->db->query("SELECT * FROM pendaftaran");
 		return $hsl;
 	}
+	
+	public function get_data_pengerjaan() {
+		$this->datatables->select('a.id as id,a.nota,c.nama as nama_frame,d.jenis_lensa,a.status_pengerjaan, b.nama as nama_pengguna');
+        $this->datatables->from('transaksi a');
+		$this->db->join('pendaftaran b','a.pengguna_id = b.id');
+		$this->db->join('stock_frame c','a.frame = c.id');
+		$this->db->join('stock_lensa d','a.lensa = d.id');
+        $this->datatables->add_column('view', '<button type="button" onclick="edit(`$1`)" type="button" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i> Selesai</button>','id,a.nota,a.frame,a.lensa,a.status_pengerjaan,b.nama as nama_pengguna');
+        return $this->datatables->generate();
+    }
+
+	
+    public function get_all_frame() {
+        $this->datatables->select('id,nama,kode_frame,state,harga');
+        $this->datatables->from('stock_frame');
+        $this->datatables->add_column('view', '<button type="button" onclick="edit_frame(`$1`)" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button>  <button onclick="hapus_barang(`$1`)" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>','id,nama,kode_frame,state,harga');
+        return $this->datatables->generate();
+    }
+
 }

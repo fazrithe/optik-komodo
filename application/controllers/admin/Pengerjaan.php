@@ -8,7 +8,7 @@ class Pengerjaan extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('datatables');// Load Library Ignited-Datatables        
+		$this->load->library('datatables');       
         $this->load->model('m_pendaftaran');
 		$this->load->model('m_stock');
 		$this->load->model('m_pengambilan');
@@ -26,6 +26,13 @@ class Pengerjaan extends CI_Controller {
 	{
 		$no_nota = $this->input->post('no_nota');
 		echo json_encode($this->m_pengerjaan->get_by_id($no_nota));
+	}
+
+	public function get_data_pengerjaan()
+	{
+		header('Content-Type: application/json');
+		echo $this->m_pengerjaan->get_data_pengerjaan();
+		 
 	}
 
 	public function selesai($id)

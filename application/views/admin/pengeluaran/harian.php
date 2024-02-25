@@ -208,7 +208,8 @@
                 $('td:eq(0)', row).html(index);
             }
         });
-        });
+      });
+
       document
         .getElementById("inputState")
         .addEventListener("change", function () {

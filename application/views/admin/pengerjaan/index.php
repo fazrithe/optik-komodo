@@ -51,7 +51,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <table id="myTable" class="table table-striped">
+          <table id="pengerjaan" class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">No.</th>
@@ -123,10 +123,93 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="<?=base_url();?>assets/sweetalert2/sweetalert2.all.min.js"></script>
-    <script
-      src="<?php echo base_url().'assets/js/custom.js'?>"></script>
+    <script>
+      $(document).ready(function () {
+        $('#datatable').DataTable();
+      });
+    </script>
       <script>
+        $(document).ready(function() {
+
+          $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+          {
+              return {
+                  "iStart": oSettings._iDisplayStart,
+                  "iEnd": oSettings.fnDisplayEnd(),
+                  "iLength": oSettings._iDisplayLength,
+                  "iTotal": oSettings.fnRecordsTotal(),
+                  "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                  "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                  "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+              };
+          };        
+
+          table = $("#pengerjaan").DataTable({
+              initComplete: function() {
+                  var api = this.api();
+                  $('#pengerjaan_filter input')
+                      .off('.DT')
+                      .on('keyup.DT', function(e) {
+                          api.search(this.value).draw();
+                      });
+              },
+              oLanguage: {
+                  sProcessing: "loading..."
+              },
+              processing: true,
+              serverSide: true,
+              ajax: {
+                  "url": "<?php echo base_url().'admin/pengerjaan/get_data_pengerjaan'?>",
+                  "type": "POST"
+              },            
+              columns: [
+                {                    
+                    "data": "id",
+                    "orderable": false,
+                    "searchable": false,
+                },
+                {"data": "nama_pengguna","autowidth": true},	
+                {"data": "nota","autowidth": true},	
+                {"data": "nama_frame","autowidth": true},      
+                {"data": 
+                  "jenis_lensa",
+                  "autowidth": true
+                },
+                {"data": 
+                  "status_pengerjaan",
+                    render: function(data) { 
+                    if(data == 1) {
+                      return '<button class="btn btn-primary">Telah dikerjakan</button>' 
+                    }
+                    else {
+                      return '<button class="btn btn-danger">Belum dikerjakan</button>'
+                    }
+
+                  },
+                  "autowidth": true
+                },      
+                {
+                    "data": "view",
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "13%"
+                }
+            ],
+              order: [[1, 'asc']],
+              rowId: function(a){
+                  return a;
+              },
+              rowCallback: function(row, data, iDisplayIndex) {
+                  var info = this.fnPagingInfo();
+                  var page = info.iPage;
+                  var length = info.iLength;
+                  var index = page * length + (iDisplayIndex + 1);
+                  $('td:eq(0)', row).html(index);
+              }
+          });
+          });
         function pengerjaan(){
             noNota = $('#noNota').val();
             var formData = {
@@ -144,9 +227,9 @@
                         var i = 1;
                         $.each(data, function(key, value){
                             if(value.status_pengambilan == '1'){
-                              status = 'Telah diambil';
+                              status = 'Telah selesai';
                             }else{
-                              status = 'Belum diambil'
+                              status = 'Belum selesai'
                             }
                             dataTable1 +=`<tr><td><input type="hidden" id="transaksiId" value=`+value.id+`>`+i+++`</td><td>`+value.nama_pengguna+`</td><td>`+value.nota+`</td><td>`+value.frame+`</td><td>`+value.lensa+`</td><td><button type="button" class="btn btn-danger btn-sm">`+status+`</button></td><td>` 
                             + `<div class="form-floating">`
