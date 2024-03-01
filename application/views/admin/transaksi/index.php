@@ -78,8 +78,7 @@
                       clip-rule="evenodd"
                       d="M6 2C5.44772 2 5 2.44772 5 3V4H4C2.89543 4 2 4.89543 2 6V16C2 17.1046 2.89543 18 4 18H16C17.1046 18 18 17.1046 18 16V6C18 4.89543 17.1046 4 16 4H15V3C15 2.44772 14.5523 2 14 2C13.4477 2 13 2.44772 13 3V4H7V3C7 2.44772 6.55228 2 6 2ZM6 7C5.44772 7 5 7.44772 5 8C5 8.55228 5.44772 9 6 9H14C14.5523 9 15 8.55228 15 8C15 7.44772 14.5523 7 14 7H6Z"
                       fill="black"
-                    /></svg
-                ></span>
+                    /></svg></span>
                 <input
                   value="2024-01-30"
                   type="date"
@@ -309,16 +308,13 @@
               <div class="box-card">
                 <div class="d-flex">
                   <div class="input-group mb-3">
-                  <span class="input-group-text">Lensa</span>
+                  <span class="input-group-text">Frame</span>
                     <div class="form-floating">
-                      <select class="form-select form-frame" name="frame" id="lensa">
+                      <select class="form-select form-frame" name="frame" id="selectFrame"  style="width: 100%">
                       <?php foreach($frame->result_array() as $value){ ?>
                         <option value="<?php echo $value['id'] ?>"><?php echo $value['nama'] ?> (<?php echo $value['kode_frame'] ?>/<?php echo $value['state'] ?>)</option>
                       <?php } ?>
                       </select>
-                      <label for="floatingInputGroup1"
-                        >Masukan jenis frame</label
-                      >
                     </div>
                   </div>
                 </div>
@@ -326,14 +322,11 @@
                   <div class="input-group mb-3">
                     <span class="input-group-text">Lensa</span>
                     <div class="form-floating">
-                      <select class="form-select form-frame" name="lensa" id="lensa">
+                      <select class="form-select form-frame" name="lensa" id="selectLensa"  style="width: 100%">
                       <?php foreach($lensa->result_array() as $value){ ?>
                         <option value="<?php echo $value['id'] ?>"><?php echo $value['jenis_lensa'] ?></option>
                       <?php } ?>
                       </select>
-                      <label for="floatingInputGroup1"
-                        >Masukan jenis lensa</label
-                      >
                     </div>
                   </div>
                 </div>
@@ -428,6 +421,17 @@
     <script
       src="<?php echo base_url().'assets/js/custom.js'?>"></script>
       <script src="<?=base_url();?>assets/sweetalert2/sweetalert2.all.min.js"></script>
+      <!-- Styles -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  
+$(document).ready(function() {
+    $('#selectFrame').select2({ width: 'resolve' }).maximizeSelect2Height();
+});
+$(document).ready(function() {
+    $('#selectLensa').select2({ width: 'resolve' }).maximizeSelect2Height();
+});
+</script>
     <!-- <script>
       document
         .getElementById("button-addon2")
