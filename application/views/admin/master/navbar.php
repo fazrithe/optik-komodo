@@ -9,6 +9,6 @@
             class="d-inline-block align-text-top"
           />
         </a>
-        <button type="button" class="btn btn-danger">Logout</button>
+        <a href="<?php echo base_url().'Administrator/logout'?>"><button type="button" class="btn btn-danger">Logout</button></a>
       </div>
     </nav>

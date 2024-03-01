@@ -35,6 +35,12 @@ class Laporan_transaksi extends CI_Controller {
 	{				
 		$this->load->view('admin/laporan-transaksi/keuangan_xl');
 	}
+
+	public function database_xl()
+	{				
+		$x['transaksi'] = $this->m_laporan_transaksi->get_data_transaksi_xl();
+		$this->load->view('admin/laporan-transaksi/database_xl',$x);
+	}
     public function database_pdf($id)
 	{
 		// $bln = $this->input->post('bln');

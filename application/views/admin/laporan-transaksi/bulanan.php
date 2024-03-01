@@ -27,7 +27,7 @@
           <p class="text-white">Cetak Laporan bulanan keuangan</p>
         </a>
         <a
-          href="data/laporan bulanan, database lengkap tiap bulan TERBARU.xlsx"
+          href="<?php echo base_url().'admin/laporan_transaksi/database_xl'?>"
           class="col-4 transaksi"
         >
           <img class="mb-3" src="<?php echo base_url().'assets/img/database 1.svg'?>" alt="" />

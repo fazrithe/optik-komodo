@@ -18,6 +18,40 @@ class M_laporan_transaksi extends CI_Model{
 		return $hsl;
 	}
 
+	public function get_data_transaksi_xl(){
+						$this->db->select('a.id as id,
+						a.tanggal,
+						a.nota,
+						a.resep,
+						b.nama as nama_pengguna,
+						b.alamat,
+						b.no_telp,
+						c.nama as nama_frame,
+						d.jenis_lensa,
+						a.keterangan,
+						a.status_r,
+						a.status_l,
+						a.status_r,
+						a.status_od,
+						a.status_os,
+						a.status_pd,
+						a.jumlah,
+						a.bpjs,
+						a.uang_muka,
+						a.pembayaran,
+						a.sisa,
+						a.tanggal_pengerjaan,
+						a.tanggal_pengambilan,
+						a.pembayaran_sisa,
+						');
+						$this->db->from('transaksi a');
+						$this->db->join('pendaftaran b','a.pengguna_id = b.id');
+						$this->db->join('stock_frame c','a.frame = c.id');
+						$this->db->join('stock_lensa d','a.lensa = d.id');
+						$query = $this->db->get();
+						return $query->result();
+	}
+
     public function get_data_transaksi_harian_pdf($start_date,$end_date){
 		$hsl=$this->db->query("SELECT * from transaksi WHERE tanggal BETWEEN '".$start_date."' AND '".$end_date."'");
 		return $hsl;

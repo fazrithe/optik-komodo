@@ -125,7 +125,7 @@
             <form class="row mt-3 g-3 d-none">
               <div class="col-md-6">
                 <label for="nota" class="form-label">Nota</label>
-                <input type="email" class="form-control" id="nota" />
+                <input type="email" class="form-control" id="nota" name="nota" />
               </div>
               <div class="col-md-6">
                 <label for="inputPassword4" class="form-label"
@@ -313,7 +313,7 @@
                     <div class="form-floating">
                       <select class="form-select form-frame" name="frame" id="lensa">
                       <?php foreach($frame->result_array() as $value){ ?>
-                        <option value="<?php echo $value['id'] ?>"><?php echo $value['nama'] ?></option>
+                        <option value="<?php echo $value['id'] ?>"><?php echo $value['nama'] ?> (<?php echo $value['kode_frame'] ?>/<?php echo $value['state'] ?>)</option>
                       <?php } ?>
                       </select>
                       <label for="floatingInputGroup1"

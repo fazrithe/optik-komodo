@@ -19,4 +19,21 @@ class m_pengambilan extends CI_Model {
 		$hsl=$this->db->query("SELECT * FROM pendaftaran");
 		return $hsl;
 	}
+
+	public function get_data_pengambilan() {
+		$this->datatables->select('a.id,a.nota,c.nama as nama_frame,d.jenis_lensa, a.tanggal_pengambilan, a.sisa, a.status_pengambilan, a.pembayaran_sisa');
+        $this->datatables->from('transaksi a');
+		$this->db->join('pendaftaran b','a.pengguna_id = b.id');
+		$this->db->join('stock_frame c','a.frame = c.id');
+		$this->db->join('stock_lensa d','a.lensa = d.id');
+        $this->datatables->add_column('view', '
+		<select class="form-select" id="pembayaran" aria-label="Floating label select example" onchange="pembayaran(`$1`)">`
+                                <option selected value="cash">Cash</option>
+                                <option value="qris">Qris</option>
+                                <option value="edc">EDC</option>
+                                <option value="transfer">Transfer</option>
+                                </select>',
+		'id,c.nama as nama_frame,d.jenis_lensa, a.tanggal_pengambilan, a.sisa');
+        return $this->datatables->generate();
+    }
 }

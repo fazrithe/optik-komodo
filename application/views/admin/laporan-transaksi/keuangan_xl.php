@@ -62,13 +62,13 @@ header("Expires: 0");
             <td>
                 <?php
                     $total_transaksi=$this->db->query("SELECT * from transaksi WHERE tanggal = '".$tanggal1."'")->result();
-                    $jumT = 0;
+                    $jumT1 = 0;
                     foreach($total_transaksi as $value){
                         if($value->tanggal == $tanggal1){
-                            $jumT += $value->jumlah;
+                            $jumT1 += $value->jumlah;
                         }
                     }
-                    echo $jumT;
+                    echo $jumT1;
                 ?>
             </td>
 
@@ -76,33 +76,44 @@ header("Expires: 0");
 
             <td>
             <?php
-                    $total_transaksi=$this->db->query("SELECT * from transaksi WHERE tanggal = '".$tanggal1."' AND pembayaran = 'bank'")->result();
-                    $jumT = 0;
+                    $total_transaksi=$this->db->query("SELECT * from transaksi WHERE tanggal = '".$tanggal1."' AND pembayaran != 'cash'")->result();
+                    $jumT2 = 0;
                     foreach($total_transaksi as $value){
                         if($value->tanggal == $tanggal1){
-                            $jumT += $value->jumlah;
+                            $jumT2 += $value->jumlah;
                         }
                     }
-                    echo $jumT;
+                    echo $jumT2;
                 ?>
             </td>
 
             <td>
             <?php
-                    $total_transaksi=$this->db->query("SELECT * from transaksi WHERE tanggal = '".$tanggal1."' AND pembayaran = 'bank'")->result();
-                    $jumT = 0;
+                    $total_transaksi=$this->db->query("SELECT * from pengeluaran_harian WHERE tanggal = '".$tanggal1."' AND status = 'ibu'")->result();
+                    $jumT3 = 0;
                     foreach($total_transaksi as $value){
                         if($value->tanggal == $tanggal1){
-                            $jumT += $value->jumlah;
+                            $jumT3 += $value->harga;
                         }
                     }
-                    echo $jumT;
+                    echo $jumT3;
                 ?>
             </td>
 
-            <td></td>
+            <td>
+            <?php
+                    $total_transaksi=$this->db->query("SELECT * from pengeluaran_harian WHERE tanggal = '".$tanggal1."' AND status = 'optik'")->result();
+                    $jumT4 = 0;
+                    foreach($total_transaksi as $value){
+                        if($value->tanggal == $tanggal1){
+                            $jumT4 += $value->harga;
+                        }
+                    }
+                    echo $jumT4;
+                ?>
+            </td>
 
-            <td></td>
+            <td><?php echo $jumT1+$jumT2+$jumT3+$jumT4 ?></td>
 
         </tr>
 

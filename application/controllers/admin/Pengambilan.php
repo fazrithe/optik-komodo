@@ -29,11 +29,21 @@ class Pengambilan extends CI_Controller {
 
 	public function selesai($id)
 	{
+		$pembayaran = $this->input->post('pembayaran');
 		$update = array(				
 			'status_pengambilan'		=> 1,
+			'tanggal_pengambilan'	=> date("Y-m-d"),
+			'pembayaran_sisa' => $pembayaran
 			);
-		$this->db->where('id', 2);
+		$this->db->where('id', $id);
 		$this->db->update('transaksi', $update);
+	}
+
+	public function get_data_pengambilan()
+	{
+		header('Content-Type: application/json');
+		echo $this->m_pengambilan->get_data_pengambilan();
+		 
 	}
 
     public function add()

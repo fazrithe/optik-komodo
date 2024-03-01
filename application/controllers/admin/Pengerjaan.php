@@ -48,6 +48,7 @@ class Pengerjaan extends CI_Controller {
 	{
 		$update = array(				
 			'status_pengerjaan'		=> 1,
+			'tanggal_pengerjaan'	=> date("Y-m-d")
 			);
 		$this->db->where('id', $this->input->post('transaksi_id'));
 		$this->db->update('transaksi', $update);
