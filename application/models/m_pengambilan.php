@@ -33,7 +33,7 @@ class m_pengambilan extends CI_Model {
                                 <option value="edc">EDC</option>
                                 <option value="transfer">Transfer</option>
                                 </select>',
-		'a.id,a.nota,c.nama as nama_frame,d.jenis_lensa, a.tanggal_pengambilan, a.sisa, a.status, a.pembayaran_sisa');
+		'id,a.nota,c.nama as nama_frame,d.jenis_lensa, a.tanggal_pengambilan, a.sisa, a.status, a.pembayaran_sisa');
         return $this->datatables->generate();
     }
 }
