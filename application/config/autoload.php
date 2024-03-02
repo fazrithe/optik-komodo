@@ -114,3 +114,5 @@ $autoload['model'] = array();
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */
+
+$autoload['time_zone'] = date_default_timezone_set("Asia/Jakarta");

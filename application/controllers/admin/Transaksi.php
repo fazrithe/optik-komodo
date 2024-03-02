@@ -63,6 +63,7 @@ class Transaksi extends CI_Controller {
             );			
             $this->output->set_content_type('application/json')->set_output(json_encode($data));
         }else{			
+			date_default_timezone_set("Asia/Jakarta");;
             $insert = array(
 					'pengguna_id'		=> $this->input->post('pengguna_id'),
 					'paket'		=> $this->input->post('paket'),
