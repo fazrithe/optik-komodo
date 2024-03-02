@@ -20,9 +20,9 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-wrapper">
-			        <div class="box">
-			            <div class="content-wrap">
-			                <img width="310px" src="<?php echo base_url().'assets/img/starpos.png'?>"/>
+			        <div class="box"  style="background-color:slategray">
+			            <div class="content-wrap" style="">
+			                <img width="310px" src="<?php echo base_url().'assets/img/LOGO OPTIK KOMODO.png'?>"/>
 			                <p><?php echo $this->session->flashdata('msg');?></p>
 	                        <hr/>
 	                        <form action="<?php echo base_url().'Administrator/cekuser'?>" method="post">
