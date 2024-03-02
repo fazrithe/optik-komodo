@@ -48,8 +48,6 @@ class Transaksi extends CI_Controller {
                 'pengguna_id' 		=> form_error('pengguna_id'),
 				'nota' 		=> form_error('nota'),
 				'resep' 		=> form_error('resep'),
-				'frame' 		=> form_error('frame'),
-				'lensa' 		=> form_error('lensa'),
 				'keterangan' 		=> form_error('keterangan'),
 				'status_r' 		=> form_error('status_r'),
 				'status_l' 		=> form_error('status_l'),
@@ -58,7 +56,6 @@ class Transaksi extends CI_Controller {
 				'jumlah' 		=> form_error('jumlah'),
 				'bpjs' 		=> form_error('bpjs'),
 				'sisa' 		=> form_error('sisa'),
-				'pembayaran' 		=> form_error('pembayaran'),
 			);
             $data = array(
                 'status' 		=> FALSE,
@@ -72,6 +69,8 @@ class Transaksi extends CI_Controller {
 					'tanggal' => date("Y-m-d"),
 					'nota'		=> $this->input->post('nota'),
 					'resep'		=> $this->input->post('resep'),
+					'frame'		=> $this->input->post('frame'),
+					'lensa'		=> $this->input->post('lensa'),
 					'keterangan'		=> $this->input->post('keterangan'),
 					'status_r'		=> $this->input->post('status_r'),
 					'status_l'		=> $this->input->post('status_l'),
@@ -142,7 +141,6 @@ class Transaksi extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
         $this->form_validation->set_rules('sisa', 'sisa', 'trim|required');
 		$this->form_validation->set_rules('jumlah', 'jumlah', 'trim|required');
-		$this->form_validation->set_rules('pembayaran', 'pembayaran', 'required');
 		// $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		// $this->form_validation->set_rules('no_telp', 'No Telp', 'trim|required|numeric');
 	}
