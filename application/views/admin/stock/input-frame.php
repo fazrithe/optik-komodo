@@ -82,7 +82,7 @@
                       <option>Umum</option>
                     </select>
                   </div>
-                  <div class="mb-3">
+                  <div class="mb-3 d-none">
                     <label for="harga" class="form-label">Harga</label>
                     <input
                         name="harga"
