@@ -89,7 +89,6 @@ class Stock extends CI_Controller {
                 'nama' 	        => form_error('nama'),
                 'kode_frama'    => form_error('kode_frame'),
 				'state'         => form_error('state'),
-                'harga' 		=> form_error('harga'),
             );
             $data = array(
                 'status' 		=> FALSE,
@@ -122,7 +121,6 @@ class Stock extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[2]|max_length[30]');
         $this->form_validation->set_rules('kode_frame', 'Kode Frame', 'trim|required');
-		$this->form_validation->set_rules('harga', 'Harga', 'trim|required|numeric');
 	}
 
 }
