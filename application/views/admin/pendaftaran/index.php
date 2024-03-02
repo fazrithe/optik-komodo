@@ -285,7 +285,7 @@
                     if(data.status) //if success close modal and reload ajax table
                     {
                         // reload_ajax();
-                        window.location.href="http://localhost/optik-komodo-v2/admin/transaksi";
+                        window.location.href="<?php echo base_url().'admin/transaksi'?>";
                     }
                     else
                     {
