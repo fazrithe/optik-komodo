@@ -126,12 +126,12 @@
               },            
               columns: [
                 {                    
-                    "data": "nota","autowidth": true
+                    "data": "nota","autowidth": true,
                 },
                 {"data": "nota","autowidth": true},	
                 {"data": "nama_frame","autowidth": true},	
                 {"data": "jenis_lensa","autowidth": true},	
-                {"data": "tanggal_pengambilan","autowidth": true},      
+                {"data": "tanggal","autowidth": true},      
                 {"data": 
                   "sisa",
                   "autowidth": true

@@ -32,13 +32,19 @@ class Laporan_transaksi extends CI_Controller {
 	}
 
 	public function keuangan_xl()
-	{				
-		$this->load->view('admin/laporan-transaksi/keuangan_xl');
+	{	
+		$x['tgl_mulai'] = $this->input->post('tanggal_mulai');
+		$x['tgl_akhir'] = $this->input->post('tanggal_akhir');
+		$this->load->view('admin/laporan-transaksi/keuangan_xl',$x);
 	}
 
 	public function database_xl()
-	{				
-		$x['transaksi'] = $this->m_laporan_transaksi->get_data_transaksi_xl();
+	{
+		$tgl_mulai = $this->input->post('tanggal_mulai');
+		$tgl_akhir = $this->input->post('tanggal_akhir');	
+		$x['tgl_mulai'] = $tgl_mulai;
+		$x['tgl_akhir'] = $tgl_akhir;				
+		$x['transaksi'] = $this->m_laporan_transaksi->get_data_transaksi_xl($tgl_mulai,$tgl_akhir);
 		$this->load->view('admin/laporan-transaksi/database_xl',$x);
 	}
     public function database_pdf($id)

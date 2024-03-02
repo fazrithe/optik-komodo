@@ -1,6 +1,6 @@
 <?php 
 
-$title = "lap_beli_range_date".date('d-m-Y');;
+$title = "lap_beli_range_date".$tgl_mulai.' - '.$tgl_akhir;
 
 header("Content-type: application/octet-stream");
 
@@ -22,7 +22,7 @@ header("Expires: 0");
 </style>
 
 
-<b><h4>Laporan Pembelian <?php echo date('M-Y');?></h4></b>
+<b><h4>Laporan Pembelian <?php echo $tgl_mulai;?> - <?php echo $tgl_akhir;?></h4></b>
 <table width="100%" border="1">
     <thead>
         <tr style='font-weight:bold;'>
@@ -59,6 +59,8 @@ header("Expires: 0");
           $no =1;
           $uangmuka = 0;
           $bpjsTotal = 0;
+          $uangmukaTotal = 0;
+          $sisaTotal = 0;
           foreach($transaksi as $value){
         echo "
       <tr>
@@ -87,6 +89,8 @@ header("Expires: 0");
         <td>".$value->tanggal_pengambilan."</td>
       </tr>";
       $bpjsTotal += $value->bpjs;
+      $uangmukaTotal += $value->uang_muka;
+      $sisaTotal += $value->sisa;
        } ?>
     </tbody>
 </table>
@@ -95,6 +99,27 @@ header("Expires: 0");
         <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         <td>BPJS</td><td>:</td><td><?php echo $bpjsTotal ?></td>
        </tr>
+       <tr>
+       <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td>Uang Muka</td><td>:</td><td><?php echo $bpjsTotal ?></td>
+       </tr>
+       <tr>
+       <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td>Sisa</td><td>:</td><td><?php echo $sisaTotal ?></td>
+       </tr>
 </table>
 
+<table border="1">
+    <tr><td></td><td></td><td></td></tr>
+    <?php 
+    $jumbulanan = 0;
+    $lapbulanan1 = $this->db->query("SELECT * from pengeluaran_bulanan")->result();
+    foreach($lapbulanan1 as $val2){
+        $jumbulanan += $val2->jumlah;
+    echo "
+    <tr>
+        <td>$val2->nama</td><td>:</td><td>$val2->jumlah</td>
+    </tr>";
+    } ?>
+</table>
 <?php redirect('admin/laporan_transkasi/bulanan','refresh'); ?>

@@ -18,7 +18,7 @@ class M_laporan_transaksi extends CI_Model{
 		return $hsl;
 	}
 
-	public function get_data_transaksi_xl(){
+	public function get_data_transaksi_xl($tgl_mulai,$tgl_akhir){
 						$this->db->select('a.id as id,
 						a.tanggal,
 						a.nota,
@@ -48,6 +48,8 @@ class M_laporan_transaksi extends CI_Model{
 						$this->db->join('pendaftaran b','a.pengguna_id = b.id');
 						$this->db->join('stock_frame c','a.frame = c.id');
 						$this->db->join('stock_lensa d','a.lensa = d.id');
+						$this->db->where('tanggal >=', $tgl_mulai);
+						$this->db->where('tanggal <=', $tgl_akhir);
 						$query = $this->db->get();
 						return $query->result();
 	}

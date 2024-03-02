@@ -57,7 +57,6 @@ class Transaksi extends CI_Controller {
 				'status_os' 		=> form_error('status_os'),
 				'jumlah' 		=> form_error('jumlah'),
 				'bpjs' 		=> form_error('bpjs'),
-				'uang_muka' 		=> form_error('uang_muka'),
 				'sisa' 		=> form_error('sisa'),
 				'pembayaran' 		=> form_error('pembayaran'),
 			);
@@ -73,8 +72,6 @@ class Transaksi extends CI_Controller {
 					'tanggal' => date("Y-m-d"),
 					'nota'		=> $this->input->post('nota'),
 					'resep'		=> $this->input->post('resep'),
-					'frame'		=> $this->input->post('frame'),
-					'lensa'		=> $this->input->post('lensa'),
 					'keterangan'		=> $this->input->post('keterangan'),
 					'status_r'		=> $this->input->post('status_r'),
 					'status_l'		=> $this->input->post('status_l'),

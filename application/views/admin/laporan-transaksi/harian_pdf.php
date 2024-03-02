@@ -3,7 +3,7 @@
         <title>Laporan Database</title>
     </head>
     <body>
-        <h2>Tanggal Cetak Laporan Transaksi</h2>
+        <h2>Tanggal Cetak Laporan Transaksi </php echo date("d-m-Y") ?></h2>
         <div>
             <table border="1" style="border-collapse: collapse" width="100%">
                 <tr align="center" style="background-color:#29cc29">

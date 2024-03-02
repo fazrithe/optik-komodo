@@ -57,8 +57,8 @@ function selesai(){
     os_v = $('[name="os_v"]').val();
     os_p = $('[name="os_p"]').val();
 
-    od = od_s + '--' + od_c + '--' + od_x + '--' + od_v;
-    os = os_s + '--' + os_c + '--' + os_x + '--' + os_v;
+    od = od_s + ' ' + od_c + ' ' + od_x + ' ' + od_v;
+    os = os_s + ' ' + os_c + ' ' + os_x + ' ' + os_v;
     pd = od_p + '/' + os_p;
     status_od = $('[name="status_od"]').val();
     status_os = $('[name="status_os"]').val();
@@ -127,7 +127,7 @@ function selesai(){
                     {
                         $.each(data.errors, function(key, value){
                             $('[name="'+key+'"]').addClass('is-invalid'); //select parent twice to select div form-group class and add has-error class
-                            $('[name="'+key+'"]').next().text(value); //select span help-block class set text error string
+                            // $('[name="'+key+'"]').next().text(value); //select span help-block class set text error string
                             if(value == ""){
                                 $('[name="'+key+'"]').removeClass('is-invalid');
                                 $('[name="'+key+'"]').addClass('is-valid');
