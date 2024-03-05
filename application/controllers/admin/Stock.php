@@ -50,7 +50,6 @@ class Stock extends CI_Controller {
                 'nama' 	        => form_error('nama'),
                 'kode_frama'    => form_error('kode_frame'),
 				'state'         => form_error('state'),
-                'harga' 		=> form_error('harga'),
 			);
             $data = array(
                 'status' 		=> FALSE,
